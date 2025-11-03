@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracy Chelangat | Digital Creator Portfolio</title>
+    
+    <!-- FAVICON LINK: Set dynamically by JavaScript to show 'TC' initials -->
+    <link id="dynamicFavicon" rel="icon" type="image/png" href="#"> 
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    // Keeping a sophisticated color palette suitable for a modern creator
+                    colors: {
+                        'primary-dark': '#151719', // Nearly black
+                        'secondary-gray': '#2a2e34', // Dark Slate
+                        'accent-gold': '#ff7f50', // Coral/Salmon for a fresh, vibrant aesthetic
+                        'text-light': '#f0f4f8',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Apply the custom font and smooth scrolling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #151719;
+            color: #f0f4f8;
+        }
+        /* Style for cards */
+        .content-card {
+            aspect-ratio: 16 / 16; /* Square for content pillars */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 127, 80, 0.3); /* Accent glow on hover */
+        }
+        .text-shadow-accent {
+            text-shadow: 0 0 10px rgba(255, 127, 80, 0.7);
+        }
+
+        /* Gallery Image Styling */
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gallery-image:hover {
+            transform: scale(1.03);
+        }
+
+        /* Full-screen Modal (Lightbox) Styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000; /* High z-index to cover everything */
+            padding-top: 50px; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.95); /* Semi-transparent black */
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90%;
+            object-fit: contain; /* Ensure the image fits within the view */
+            border-radius: 12px;
+        }
+
+        /* Close Button */
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #ff7f50; /* Accent color */
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #f0f4f8; /* Light text on hover */
+            text-decoration: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Hidden Canvas for Favicon Generation -->
+    <canvas id="faviconCanvas" width="32" height="32" class="hidden"></canvas>
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-primary-dark/95 backdrop-blur-sm shadow-xl border-b border-accent-gold/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo/Name -->
+            <a href="#hero" class="text-2xl font-extrabold text-text-light hover:text-accent-gold transition duration-300">
+                Tracy Chelangat's <span class="text-accent-gold">Portfolio</span>
+            </a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about-me" class="text-text-light hover:text-accent-gold transition duration-300 font-medium">About</a>
+                <a href="#gallery" class="text-text-light hover:text-accent-gold transition duration-300 font-medium">Gallery</a>
+                <a href="#collaborate" class="text-text-light hover:text-accent-gold transition duration-300 font-medium">Collaborate</a>
+                <a href="#contact" class="px-4 py-2 bg-accent-gold text-primary-dark rounded-full font-semibold hover:bg-orange-400 transition duration-300">Say Hello</a>
+            </nav>
+            <!-- Mobile Menu Button (Hamburger) - Placeholder for now -->
+            <button class="md:hidden text-text-light focus:outline-none" onclick="alert('Navigation is simplified on mobile.')">
+                <svg xmlns="IMG_7525.png" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 1. Hero Section -->
+    <section id="hero" class="relative min-h-[85vh] flex items-center justify-center text-center overflow-hidden p-6 bg-secondary-gray">
+        <!-- Subtle Gradient Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-dark to-secondary-gray opacity-80"></div>
+        <div class="relative z-10 max-w-5xl mx-auto">
+            <p class="text-xl sm:text-2xl text-accent-gold mb-3 font-medium tracking-wider uppercase">Nairobi, Kenya</p>
+            <h1 class="text-6xl sm:text-8xl font-extrabold mb-4 leading-none">
+                <span class="block text-text-light">TRACY CHELANGAT</span>
+            </h1>
+            <h2 class="text-2xl sm:text-4xl font-semibold text-accent-gold text-shadow-accent mb-10">
+                Digital Creator | Beauty & Lifestyle Content Specialist
+            </h2>
+            <a href="#gallery" class="inline-block px-10 py-4 bg-accent-gold text-primary-dark text-xl font-bold rounded-xl shadow-2xl hover:bg-orange-400 transition duration-300 transform hover:scale-105">
+                View My Gallery
+            </a>
+        </div>
+    </section>
+
+    <!-- 2. About Me Section (Vision & Mission) -->
+    <section id="about-me" class="py-24 bg-primary-dark">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-shrink-0 w-full md:w-1/3 text-center">
+                <!-- Placeholder for the user's photo/avatar -->
+                <img src="IMG_7525.png" 
+                     alt="Tracy Chelangat" 
+                     class="rounded-3xl w-72 h-72 object-cover mx-auto shadow-2xl border-4 border-accent-gold/50">
+                <div class="mt-6">
+                    <p class="text-gray-400 text-sm">
+                        <span class="text-accent-gold font-semibold">Socials: </span>
+                        <a href="https://instagram.com/hey_chelaaaa" target="_blank" class="hover:underline">@hey_chelaaaa</a> (Instagram & TikTok)
+                    </p>
+                    <p class="text-gray-500 mt-2 text-xs">
+                        
+                    </p>
+                </div>
+            </div>
+            <div class="flex-grow md:w-2/3 text-center md:text-left">
+                <h2 class="text-4xl font-bold text-accent-gold mb-6">My Vision: Authentic Storytelling</h2>
+                <p class="text-xl text-gray-300 mb-6 leading-relaxed">
+                    I'm a passionate digital creator who blends storytelling, beauty, and lifestyle to create authentic, relatable, and inspiring content. My work revolves around connecting with audiences through everyday experiences and creative expression.
+                </p>
+                <!-- TEXT for self-taught and 3 years experience -->
+                <p class="text-lg text-gray-400 mb-6 font-semibold">
+                    My beauty journey started 3 years ago, and I am completely self-taught. This foundation gives my content a relatable, real-world perspective that resonates deeply with my audience.
+                </p>
+                <!-- Existing Vision/Mission -->
+                <p class="text-lg text-gray-400 leading-relaxed italic border-l-4 border-accent-gold pl-4">
+                    "To use digital storytelling to empower others through beauty, self-expression, and everyday inspiration."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Gallery Section -->
+    <section id="gallery" class="py-24 bg-secondary-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-accent-gold mb-12 border-b-2 border-accent-gold/50 pb-2 inline-block mx-auto">Recent Work Showcase</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                
+                <!-- Image 1: IMG_1024.heic -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_1024.png" 
+                         alt="Makeup look with sunglasses on head" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 2: IMG_5458.jpg -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_2729.png" 
+                         alt="Blue eyeshadow and lip gloss look" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 3: IMG_6069.jpg -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_3431.png" 
+                         alt="Pink eyeshadow with white beret and jacket" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 4: IMG_5454.jpg -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_4330.png" 
+                         alt="Close-up with brown curly hair and layered necklaces" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 5: IMG_3431.dng -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_5454.png" 
+                         alt="Red top and white jacket look in a rickshaw" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 6: IMG_6611.jpg -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_5458.png" 
+                         alt="Bold pink and dark glossy lip look" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 7: IMG_2729.heic -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_6069.png" 
+                         alt="Subtle pink makeup look with braids" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 8: IMG_4330.heic -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_6611.png" 
+                         alt="Retro look with green polo and voluminous hair" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 9: IMG_5592.heic -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_7093.png" 
+                         alt="Dark green lip and striped top outfit" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 10: IMG_7093.jpg -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_8057.png" 
+                         alt="Golden hour selfie with butterfly earrings" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 11: IMG_5592.heic -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_8251.png" 
+                         alt="Dark green lip and striped top outfit" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Image 12: IMG_5592.heic -->
+                <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="IMG_8846.png" 
+                         alt="Dark green lip and striped top outfit" 
+                         class="gallery-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Placeholder for Image 11: IMG_5454.jpg is used twice, will add a unique image if one was missed -->
+                <!-- <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="URL_11" alt="Description 11" class="gallery-image" onclick="openModal(this.src)">
+                </div> -->
+                <!-- Placeholder for Image 12 -->
+                <!-- <div class="aspect-square overflow-hidden rounded-xl shadow-lg border-2 border-primary-dark hover:border-accent-gold transition duration-300">
+                    <img src="URL_12" alt="Description 12" class="gallery-image" onclick="openModal(this.src)">
+                </div> -->
+                
+            </div>
+            <p class="text-center text-gray-500 mt-8 text-sm">
+                Click on any photo to see it full-screen.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. Collaboration Section (What I Bring to a Brand Collaboration) - Now moved up -->
+    <section id="collaborate" class="py-24 bg-primary-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-accent-gold mb-12">What I Bring to a Brand Collaboration</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <!-- Collaboration Benefit 1 -->
+                <div class="p-6 bg-secondary-gray rounded-xl border-l-4 border-accent-gold shadow-lg text-left">
+                    <h3 class="text-xl font-semibold text-text-light mb-2">On-Camera Confidence</h3>
+                    <p class="text-sm text-gray-400">Professional on-screen presence, combined with strong creative direction to deliver your message effectively.</p>
+                </div>
+                <!-- Collaboration Benefit 2 -->
+                <div class="p-6 bg-secondary-gray rounded-xl border-l-4 border-accent-gold shadow-lg text-left">
+                    <h3 class="text-xl font-semibold text-text-light mb-2">Trend-Based Storytelling</h3>
+                    <p class="text-sm text-gray-400">Expertise in video editing and leveraging current digital trends for maximum visibility and impact.</p>
+                </div>
+                <!-- Collaboration Benefit 3 -->
+                <div class="p-6 bg-secondary-gray rounded-xl border-l-4 border-accent-gold shadow-lg text-left">
+                    <h3 class="text-xl font-semibold text-text-light mb-2">Authentic Engagement</h3>
+                    <p class="text-sm text-gray-400">Consistent and genuine connection with Kenyan youth and lifestyle audiences for organic reach.</p>
+                </div>
+                <!-- Collaboration Benefit 4 -->
+                <div class="p-6 bg-secondary-gray rounded-xl border-l-4 border-accent-gold shadow-lg text-left">
+                    <h3 class="text-xl font-semibold text-text-light mb-2">Translating Brand Messages</h3>
+                    <p class="text-sm text-gray-400">Ability to seamlessly integrate brand values into authentic, relatable lifestyle moments.</p>
+                </div>
+            </div>
+            
+            <a href="#contact" class="mt-12 inline-block px-8 py-3 bg-accent-gold text-primary-dark text-lg font-semibold rounded-full hover:bg-orange-400 transition duration-300">
+                Let's Create Something Powerful Together
+            </a>
+        </div>
+    </section>
+
+    <!-- 5. Contact Section -->
+    <section id="contact" class="py-20 bg-secondary-gray">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-accent-gold mb-8">Get In Touch</h2>
+            <p class="text-lg text-gray-300 mb-8">
+                Ready to collaborate on a campaign? Reach out directly via email or connect with me on social media.
+            </p>
+            
+            <div class="space-y-6 text-xl">
+                <!-- Contact Detail: Email -->
+                <div class="flex items-center justify-center space-x-3">
+                    <!-- Email Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-accent-gold">
+                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                        <path d="M22 6L12 13L2 6"></path>
+                    </svg>
+                    <span class="text-text-light font-medium">Email: </span>
+                    <a href="mailto:tracychela33@gmail.com" class="text-gray-300 hover:text-accent-gold transition duration-300">
+                        tracychela33@gmail.com
+                    </a>
+                </div>
+
+                <!-- Contact Detail: Social Links -->
+                <div class="pt-6">
+                    <p class="text-lg text-gray-400">Connect with me on:</p>
+                    <div class="flex justify-center mt-4 space-x-6">
+                        <!-- Instagram Link -->
+                        <a href="https://instagram.com/hey_chelaaaa" target="_blank" class="text-gray-300 hover:text-accent-gold transition duration-300" aria-label="Instagram">
+                             <!-- Instagram Icon SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <!-- TikTok Link -->
+                       <!-- ...existing code... -->
+<!-- TikTok Link -->
+<!-- ...existing code... -->
+<!-- TikTok Link -->
+<a href="https://tiktok.com/@hey_chelaaaa" target="_blank" class="text-gray-300 hover:text-accent-gold transition duration-300" aria-label="TikTok">
+    <!-- Official TikTok Logo SVG (dark version) -->
+    <svg width="32" height="32" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+        <rect width="256" height="256" rx="128" fill="#151719"/>
+        <path d="M176.7 72.2c-10.4-6.2-17.7-17.4-17.7-30.2V40h-28.2v112.2c0 13.2-10.7 24-24 24s-24-10.8-24-24c0-13.2 10.7-24 24-24 2.2 0 4.3.3 6.3.8V112.6c-2.1-.2-4.2-.4-6.3-.4-31.6 0-57.2 25.6-57.2 57.2s25.6 57.2 57.2 57.2c31.6 0 57.2-25.6 57.2-57.2V96.6c8.2 6.2 18.3 9.9 29.3 9.9v-28.2c-5.1 0-10.1-1.4-14.3-4.1z" fill="#fff"/>
+        <path d="M176.7 72.2c-10.4-6.2-17.7-17.4-17.7-30.2V40h-28.2v112.2c0 13.2-10.7 24-24 24s-24-10.8-24-24c0-13.2 10.7-24 24-24 2.2 0 4.3.3 6.3.8V112.6c-2.1-.2-4.2-.4-6.3-.4-31.6 0-57.2 25.6-57.2 57.2s25.6 57.2 57.2 57.2c31.6 0 57.2-25.6 57.2-57.2V96.6c8.2 6.2 18.3 9.9 29.3 9.9v-28.2c-5.1 0-10.1-1.4-14.3-4.1z" fill="#25F4EE" fill-opacity="0.7"/>
+        <path d="M176.7 72.2c-10.4-6.2-17.7-17.4-17.7-30.2V40h-28.2v112.2c0 13.2-10.7 24-24 24s-24-10.8-24-24c0-13.2 10.7-24 24-24 2.2 0 4.3.3 6.3.8V112.6c-2.1-.2-4.2-.4-6.3-.4-31.6 0-57.2 25.6-57.2 57.2s25.6 57.2 57.2 57.2c31.6 0 57.2-25.6 57.2-57.2V96.6c8.2 6.2 18.3 9.9 29.3 9.9v-28.2c-5.1 0-10.1-1.4-14.3-4.1z" fill="#FE2C55" fill-opacity="0.5"/>
+    </svg>
+</a>
+<!-- ...existing code... -->
+<!-- ...existing code... -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Full-screen Modal (Lightbox) -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage" alt="Enlarged Image">
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark py-6 text-center border-t border-accent-gold/20">
+        <p class="text-sm text-gray-400">&copy; <span id="year"></span> Tracy Chelangat. All rights reserved. | Digital Creator</p>
+    </footer>
+    
+    <script>
+        // Set current year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- FAVICON GENERATION (Initials: TC) ---
+        function generateFavicon() {
+            const canvas = document.getElementById('faviconCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            // Draw dark background
+            ctx.clearRect(0, 0, 32, 32);
+            ctx.fillStyle = '#151719'; // primary-dark
+            ctx.fillRect(0, 0, 32, 32);
+            
+            // Draw initials (Tracy Chelangat -> TC) in accent color
+            ctx.fillStyle = '#ff7f50'; // accent-gold
+            ctx.font = 'bold 18px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('TC', 16, 17); // Center the text with slight vertical adjustment
+
+            // Set favicon link href
+            const favicon = document.getElementById('dynamicFavicon');
+            if (favicon) {
+                favicon.href = canvas.toDataURL('image/png');
+            }
+        }
+
+        // --- MODAL (Lightbox) Logic ---
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+
+        // Function to open the modal
+        function openModal(imageSrc) {
+            modal.style.display = 'block';
+            modalImage.src = imageSrc;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close the modal if the user clicks anywhere outside the image
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        window.onload = function() {
+            generateFavicon();
+        };
+
+    </script>
+</body>
+</html>
